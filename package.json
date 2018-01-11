@@ -1,0 +1,32 @@
+{
+  "name": "Sotalbireo.github.io",
+  "private": true,
+  "description": "the Portfolio.",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sotalbireo/Sotalbireo.github.io.git"
+  },
+  "author": "Kyohei SASAKI",
+  "homepage": "https://sotalbireo.github.io/",
+  "devDependencies": {
+    "apply-loader": "^2.0.0",
+    "autoprefixer": "^7.2.4",
+    "awesome-typescript-loader": "^3.4.1",
+    "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^0.28.8",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "globule": "^1.2.0",
+    "node-sass": "^4.7.2",
+    "postcss": "^6.0.16",
+    "postcss-loader": "^2.0.10",
+    "pug": "^2.0.0-rc.4",
+    "pug-loader": "^2.3.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  }
+}
