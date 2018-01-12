@@ -7,12 +7,12 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const dir = {
-	src: path.resolve(path.join(__dirname, 'src')),
-	dest: path.resolve(path.join(__dirname, 'Sotalbireo.github.io'))
+	src: path.resolve(__dirname, 'src'),
+	dest: path.resolve(__dirname, 'Sotalbireo.github.io')
 }
 
 const convertExt = {
-	jade: 'html',
+	pug: 'html',
 	sass: 'css',
 	ts: 'js'
 }
@@ -25,9 +25,15 @@ Object.keys(convertExt).forEach(from => {
 	})
 })
 
-const jadeLoader = [
-	'apply-loader',
-	'pug-loader'
+const pugLoader = [
+	{
+		loader: 'html-loader',
+		options: {
+			removeComments: true,
+			minimize: true
+		}
+	},
+	'pug-html-loader'
 ]
 
 const sassLoader = [
@@ -41,7 +47,7 @@ const sassLoader = [
 		loader: 'postcss-loader',
 		options: {
 			ident: 'postcss',
-			plugins: (loader) => [require('autoprefixer')()]
+			plugins: loader => [require('autoprefixer')()]
 		}
 	},
 	'sass-loader'
@@ -53,6 +59,7 @@ const tsLoader = [
 
 const config = {
 	context: dir.src,
+	target: 'web',
 	entry: files,
 	output: {
 		filename: '[name]',
@@ -61,8 +68,8 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.jade$/,
-				use: ExtractTextPlugin.extract(jadeLoader)
+				test: /\.pug$/,
+				use: ExtractTextPlugin.extract(pugLoader)
 			},
 			{
 				test: /\.sass$/,
@@ -83,16 +90,27 @@ const config = {
 			}
 		]
 	},
+	resolve: {
+		modules: [
+			'node_modules',
+			path.resolve(__dirname, 'src')
+		]
+	},
 	plugins: [
 		new ExtractTextPlugin('[name]'),
 		new CopyPlugin(
 			[{from: {glob: '**/*', dot: true}}],
-			{ignore: Object.keys(convertExt).map(ext=>`*.${ext}`)}
+			{ignore: Object.keys(convertExt).map(ext => `*.${ext}`)}
 		),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 		})
-	]
+	],
+	devServer: {
+		contentBase: dir.dest,
+		port: 8000,
+		hot: true
+	}
 }
 
 if(process.env.NODE_ENV === 'production') {
