@@ -3,11 +3,14 @@ extends _layout
 block attributes
 	include _config.pug
 	- var title = 'the Portfolio'
-	- var twitter = 'https://'+snsDomain[0]+'/'+author
 
 block body
 	.container
-		h1 こんにちは、世界
-		p ここは#{author}のポートフォリオサイトになる予定です。
-		p お問い合わせ先：
-			a(href=twitter) @sota_n@twitter.com
+		.row.justify-content-center
+			.col-md-5
+				.jumbotron
+			.col-md-5
+				h1 こんにちは、世界
+				p ここは#{author}のポートフォリオサイトになる予定です。
+				p お問い合わせ先：
+					a(href=SNSs[0].uri) @sota_n@twitter.com

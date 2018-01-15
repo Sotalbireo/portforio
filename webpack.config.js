@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const dir = {
 	src: path.resolve(__dirname, 'src'),
-	dest: path.resolve(__dirname, 'Sotalbireo.github.io')
+	dest: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'Sotalbireo.github.io') : path.resolve(__dirname, 'dist')
 }
 
 const convertExt = {
@@ -54,7 +54,13 @@ const sassLoader = [
 ]
 
 const tsLoader = [
-	'awesome-typescript-loader'
+	'awesome-typescript-loader',
+	{
+		loader: 'tslint-loader',
+		options: {
+			configFile: 'tslint.json'
+		}
+	}
 ]
 
 const config = {
@@ -104,7 +110,7 @@ const config = {
 		),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-		})
+		}),
 	],
 	devServer: {
 		contentBase: dir.dest,

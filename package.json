@@ -10,8 +10,13 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js --color",
+    "clean": "npm-run-all --parallel clean:*",
+    "clean:develop": "del-cli dist/*",
+    "clean:publish": "del-cli Sotalbireo.github.io/* !.gitignore",
     "devel": "webpack-dev-server --color",
-    "publish": "webpack --config webpack.config.js -p --display errors-only"
+    "tslint": "tslint --project ./ './src/**/*.{ts,tsx}'",
+    "publish": "npm-run-all clean webpack:publish",
+    "webpack:publish": "webpack --config webpack.config.js -p --display errors-only"
   },
   "devDependencies": {
     "apply-loader": "^2.0.0",
@@ -19,18 +24,26 @@
     "awesome-typescript-loader": "^3.4.1",
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.8",
+    "del-cli": "^1.1.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "globule": "^1.2.0",
     "html-loader": "^0.5.4",
     "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
     "postcss": "^6.0.16",
     "postcss-loader": "^2.0.10",
     "pug": "^2.0.0-rc.4",
     "pug-html-loader": "^1.1.5",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.4.2",
+    "tslint-loader": "^3.5.3",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.3"
   }
 }
