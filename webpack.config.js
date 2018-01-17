@@ -119,12 +119,14 @@ const config = {
 	}
 }
 
-if(process.env.NODE_ENV === 'production') {
+module.exports = env => {
+	if(env.production) {
+		config.output.path = path.resolve(__dirname, 'Sotalbireo.github.io')
 	config.plugins = config.plugins.concat([
 		new webpack.optimize.UglifyJsPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.optimize.AggressiveMergingPlugin()
 	])
 }
-
-module.exports = config
+	return config
+}

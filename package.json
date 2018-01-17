@@ -16,7 +16,7 @@
     "devel": "webpack-dev-server --color",
     "tslint": "tslint --project ./ './src/**/*.{ts,tsx}'",
     "publish": "npm-run-all clean webpack:publish",
-    "webpack:publish": "webpack --config webpack.config.js -p --display errors-only"
+    "webpack:publish": "webpack --env.production -p --display errors-only"
   },
   "devDependencies": {
     "apply-loader": "^2.0.0",
