@@ -9,12 +9,12 @@
     "url": "git+https://github.com/Sotalbireo/Sotalbireo.github.io.git"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js --color",
+    "build": "webpack --color",
     "clean": "npm-run-all --parallel clean:*",
-    "clean:develop": "del-cli dist/*",
+    "clean:develop": "del-cli dist/**/*",
     "clean:publish": "del-cli Sotalbireo.github.io/* !.gitignore",
     "devel": "webpack-dev-server --color",
-    "tslint": "tslint --project ./ './src/**/*.{ts,tsx}'",
+    "tslint": "tslint --type-check --project ./ './src/**/*.{ts,tsx}'",
     "publish": "npm-run-all clean webpack:publish",
     "webpack:publish": "webpack --env.production -p --display errors-only"
   },

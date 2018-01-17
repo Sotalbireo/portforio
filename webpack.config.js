@@ -6,9 +6,11 @@ const globule = require('globule')
 const CopyPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+
+
 const dir = {
-	src: path.resolve(__dirname, 'src'),
-	dest: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'Sotalbireo.github.io') : path.resolve(__dirname, 'dist')
+	src : path.resolve(__dirname, 'src'),
+	dest: path.resolve(__dirname, 'dist') // for Develop use.
 }
 
 const convertExt = {
@@ -58,7 +60,8 @@ const tsLoader = [
 	{
 		loader: 'tslint-loader',
 		options: {
-			configFile: 'tslint.json'
+			configFile: 'tslint.json',
+			typeCheck: true
 		}
 	}
 ]
@@ -122,11 +125,11 @@ const config = {
 module.exports = env => {
 	if(env.production) {
 		config.output.path = path.resolve(__dirname, 'Sotalbireo.github.io')
-	config.plugins = config.plugins.concat([
-		new webpack.optimize.UglifyJsPlugin(),
-		new webpack.optimize.OccurrenceOrderPlugin(),
-		new webpack.optimize.AggressiveMergingPlugin()
-	])
-}
+		config.plugins = config.plugins.concat([
+			new webpack.optimize.UglifyJsPlugin(),
+			new webpack.optimize.OccurrenceOrderPlugin(),
+			new webpack.optimize.AggressiveMergingPlugin()
+		])
+	}
 	return config
 }
