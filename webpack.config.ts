@@ -1,31 +1,33 @@
 // Thanks: https://qiita.com/toduq/items/2e0b08bb722736d7968c
 
-const webpack = require('webpack')
-const path = require('path')
-const globule = require('globule')
-const CopyPlugin = require('copy-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+import * as webpack from 'webpack';
+import * as path from 'path';
+import * as globule from 'globule';
+import * as CopyPlugin from 'copy-webpack-plugin';
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 
 
 const dir = {
 	src : path.resolve(__dirname, 'src'),
-	dest: path.resolve(__dirname, 'dist') // for Develop use.
-}
+	dest: path.resolve(__dirname, 'dist'), // for Develop use.
+	pub: path.resolve(__dirname, 'Sotalbireo.github.io') // for Publish use.
+};
 
 const convertExt = {
 	pug: 'html',
 	sass: 'css',
 	ts: 'js'
-}
+};
+type convertExtFrom = 'pug' | 'sass' | 'ts';
 
-const files = {}
+const files: webpack.Entry = {};
 Object.keys(convertExt).forEach(from => {
-	const to = convertExt[from]
+	const to = convertExt[(from as convertExtFrom)];
 	globule.find([`**/*.${from}`, `!**/_*.${from}`], {cwd: dir.src}).forEach(filename => {
-		files[filename.replace(new RegExp(`.${from}$`), `.${to}`)] = path.join(dir.src, filename)
-	})
-})
+		files[filename.replace(new RegExp(`.${from}$`), `.${to}`)] = path.join(dir.src, filename);
+	});
+});
 
 const pugLoader = [
 	{
@@ -36,7 +38,7 @@ const pugLoader = [
 		}
 	},
 	'pug-html-loader'
-]
+];
 
 const sassLoader = [
 	{
@@ -49,11 +51,11 @@ const sassLoader = [
 		loader: 'postcss-loader',
 		options: {
 			ident: 'postcss',
-			plugins: loader => [require('autoprefixer')()]
+			plugins: () => [require('autoprefixer')()]
 		}
 	},
 	'sass-loader'
-]
+];
 
 const tsLoader = [
 	'awesome-typescript-loader',
@@ -64,7 +66,7 @@ const tsLoader = [
 			typeCheck: true
 		}
 	}
-]
+];
 
 const config = {
 	context: dir.src,
@@ -122,14 +124,15 @@ const config = {
 	}
 }
 
-module.exports = env => {
-	if(env.production) {
-		config.output.path = path.resolve(__dirname, 'Sotalbireo.github.io')
+module.exports = (env: any) => {
+	if(env && env.production) {
+		config.output.path = dir.pub;
 		config.plugins = config.plugins.concat([
+			new webpack.optimize.DedupePlugin(),
 			new webpack.optimize.UglifyJsPlugin(),
-			new webpack.optimize.OccurrenceOrderPlugin(),
+			new webpack.optimize.OccurrenceOrderPlugin(true),
 			new webpack.optimize.AggressiveMergingPlugin()
-		])
-	}
+		]);
+	};
 	return config
-}
+};

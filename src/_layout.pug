@@ -1,26 +1,28 @@
 doctype html
 block attributes
+	include _config.pug
 html(lang='ja')
 	head
 		meta(charset='utf-8')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
 		title= title
-		link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css' integrity='sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy' crossorigin='anonymous')
+		link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
 		block meta
-	body
+	body(style='margin-top:1rem;')
 		block body
-		footer.footer.container
+		footer.footer.container(style='margin-top:5rem;')
 			block footer
+			p このサイトではBootstrap4を利用しています。
 			.row.align-items-end
 				.col-md
-					p このサイトではBootstrap4.xを利用しています。
 					address
-						| --
-						br
-						| Sota SASAKI (Sotalbireo)
-						each v in SNSs
+						small
+							| --
 							br
-							| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]
+							| Sota SASAKI (Sotalbireo)
+							each v in SNSs
+								br
+								| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]
 				.col-md.text-right
-					p.copywrite ©2018 Sota SASAKI, Sixth-Neighbours.
+					p: small.copywrite ©2018 Sota SASAKI, Sixth-Neighbours.

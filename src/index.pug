@@ -1,16 +1,13 @@
 extends _layout
 
-block attributes
-	include _config.pug
+block prepend attributes
 	- var title = 'the Portfolio'
 
 block body
 	.container
 		.row.justify-content-center
 			.col-md-5
-				.jumbotron
+				.card.bg-dark.border-light
+					img.card-img(src='http://asuka.absolute-ze.ro/img/cinderella_11.png')
 			.col-md-5
 				h1 こんにちは、世界
-				p ここは#{author}のポートフォリオサイトになる予定です。
-				p お問い合わせ先：
-					a(href=SNSs[0].uri) @sota_n@twitter.com
