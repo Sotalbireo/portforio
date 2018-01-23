@@ -24,7 +24,7 @@ type convertExtFrom = 'pug' | 'sass' | 'ts';
 const files: webpack.Entry = {};
 Object.keys(convertExt).forEach(from => {
 	const to = convertExt[(from as convertExtFrom)];
-	globule.find([`**/*.${from}`, `!**/_*.${from}`], {cwd: dir.src}).forEach(filename => {
+	globule.find([`**/*.${from}`, `!**/_*.${from}`, `!**/_*/*.${from}`], {cwd: dir.src}).forEach(filename => {
 		files[filename.replace(new RegExp(`.${from}$`), `.${to}`)] = path.join(dir.src, filename);
 	});
 });
@@ -126,7 +126,9 @@ const config = {
 
 module.exports = (env: any) => {
 	if(env && env.production) {
+
 		config.output.path = dir.pub;
+
 		config.plugins = config.plugins.concat([
 			new webpack.optimize.DedupePlugin(),
 			new webpack.optimize.UglifyJsPlugin(),

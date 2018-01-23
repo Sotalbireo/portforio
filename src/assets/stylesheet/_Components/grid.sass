@@ -1,0 +1,26 @@
+.grid-2cols
+  display: flex
+  flex-direction: row
+  margin: 0 auto
+  position: relative
+  width: 90%
+
+.grid-2cols-col
+  flex: auto
+  margin: 0 auto
+  max-width: 48%
+  padding: 1em
+  position: relative
+
+.grid-2cols-col.mod-img
+  padding: 0
+
+
+
+@media #{$small}
+  .grid-2cols
+    flex-direction: column
+    width: 100%
+
+  .grid-2cols-col
+    max-width: 100%
