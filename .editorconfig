@@ -3,17 +3,17 @@ root = true
 [*]
 charset = utf-8
 end_of_line = lf
-indent-size = 2
+indent_size = 2
 insert_final_newline = true
 
 [*.json]
-indent-style = space
+indent_style = space
 
-[**/*.pug]
-indent-style = tab
+[*.pug]
+indent_style = tab
 
-[**/*.sass]
-indent-style = space
+[*.sass]
+indent_style = space
 
 [*.ts]
-indent-style = tab
+indent_style = tab
