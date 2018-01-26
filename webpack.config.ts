@@ -74,6 +74,7 @@ const config = {
 	entry: files,
 	output: {
 		filename: '[name]',
+		jsonpFunction: 'vendor',
 		path: dir.dest
 	},
 	module: {

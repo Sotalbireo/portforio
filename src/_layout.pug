@@ -7,23 +7,22 @@ html(lang='ja')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
 		title= title
-		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
 		link(rel='stylesheet', href='/assets/stylesheet/index.css')
 		block meta
 	body(style='margin-top:1rem;')
 		block body
-		footer.footer.container(style='margin-top:5rem;')
+		footer.grid(style='margin-top:5rem;')
 			block footer
-			p このサイトではBootstrap4を利用しています。
-			.row.align-items-end
-				.col-md
-					address
-						small
-							| --
-							br
-							| Sota SASAKI (Sotalbireo)
-							each v in SNSs
+				p このサイトは、Semantic-UI、Bootstrapなどのデザインフレームワークを基にデザインされています。
+				.grid-2cols
+					.grid-2cols-col
+						address
+							small
+								| --
 								br
-								| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]
-				.col-md.text-right
-					p: small.copywrite ©2018 Sota SASAKI, Sixth-Neighbours.
+								| Sota SASAKI (Sotalbireo)
+								each v in SNSs
+									br
+									| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]
+					.grid-2cols-col.u-text-right
+						p: small.copywrite ©2018 Sota SASAKI, Sixth-Neighbours.

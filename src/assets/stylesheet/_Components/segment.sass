@@ -3,44 +3,70 @@
 .segment
   border: 1px solid hsla(210, 6%, 14%, 0.15)
   box-shadow: 0 2px 4px 0 hsla(210, 6%, 14%, 0.12), 0 2px 10px 0 hsla(210, 6%, 14%, 0.15)
-  margin: 1rem 0
-  padding: 1ex
+  margin: 1rem
   position: relative
-
   &:last-child
     margin-bottom: 0
 
 .segment-header
+  padding-top: 1ex
   position: relative
 
-.segment-header-label
+.segment-header-ribbon
   border-radius: 0 0.3rem 0.3rem 0
   display: inline-block
-  font-weight: 700
-  left: calc(-1rem - 1.2em)
+  font-size: 0.86em
   line-height: 1
-  margin-right: -1.2em
+  margin: 0 1.2em 0 -1rem
   min-width: max-content
-  padding: 0.6rem 1.2em 0.6em calc(1rem + 1.2em)
+  padding: 0.4em 1em 0.6em calc(1rem + 0.8em)
   transition: background 0.1s ease
   vertical-align: baseline
-
   &:after
     background-color: transparent
-    border: 0 solid transparent
-    border-width: 0 1.2em 1.2em 0
+    border-color: transparent !important
+    border-right-color: inherit !important
+    border-style: solid
+    border-width: 0 1rem 1.2rem 0
     content: ''
     height: 0
-    left: 0
+    left: -1rem
     position: absolute
     top: 100%
     width: 0
 
+.segment-header-content
+  display: inline-block
+  font-size: 1.3em
+  line-height: 1
+  margin: 0
+  vertical-align: middle
+
+.segment-header-label
+
+
+.segment-body
+  padding: 1em
+
+
+
+// ;mod
+.segment-header-ribbon
   &.mod-red
     background-color: #db2828
     border-color: #b21e1e
     color: #fff
     &:after
       border-color: #b21e1e
-
-.segment-
+  &.mod-primary
+    background-color: $color-primary
+    border-color: $color-primary-dark
+    color: $color-primary-text
+    &:after
+      border-color: $color-primary-dark
+  &.mod-secondary
+    background-color: $color-secondary
+    border-color: $color-secondary-dark
+    color: $color-secondary-text
+    &:after
+      border-color: $color-secondary-dark
