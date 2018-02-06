@@ -2,7 +2,7 @@ extends _layout
 
 block append attributes
 	- var title = 'the Portfolio'
-
+	include Variables/_Products
 block body
 	.grid.grid-2cols
 		.grid-2cols-col
@@ -12,9 +12,10 @@ block body
 			p うまいこと書きたい
 			p ぬるぽ
 	.grid
-		.segment
-			.segment-header
-				span.segment-header-ribbon.mod-primary MainLanguage
-				h3.segment-header-content Product Name
-			.segment-body
-				p Products overview
+		each product in Products
+			.segment
+				.segment-header
+					span.segment-header-ribbon.mod-primary= product.mainLanguage
+					h3.segment-header-content= product.name
+				.segment-body
+					p= product.overview
