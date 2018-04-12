@@ -1,5 +1,3 @@
-// Thanks: https://qiita.com/toduq/items/2e0b08bb722736d7968c
-
 import * as webpack from 'webpack';
 import * as path from 'path';
 import * as globule from 'globule';
@@ -113,10 +111,7 @@ const config = {
 		new CopyPlugin(
 			[{from: {glob: '**/*', dot: true}}],
 			{ignore: Object.keys(convertExt).map(ext => `*.${ext}`)}
-		),
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-		}),
+		)
 	],
 	devServer: {
 		contentBase: dir.dest,
