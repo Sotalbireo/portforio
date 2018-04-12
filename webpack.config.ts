@@ -126,9 +126,9 @@ module.exports = (env: any) => {
 		config.output.path = dir.pub;
 
 		config.plugins = config.plugins.concat([
-			new webpack.optimize.DedupePlugin(),
-			new webpack.optimize.UglifyJsPlugin(),
-			new webpack.optimize.OccurrenceOrderPlugin(true),
+			new webpack.LoaderOptionsPlugin({
+				minimize: true
+			}),
 			new webpack.optimize.AggressiveMergingPlugin()
 		]);
 	};

@@ -15,7 +15,7 @@
     "clean:publish": "del-cli Sotalbireo.github.io/* !.gitignore",
     "tslint": "tslint --type-check --project ./ './src/**/*.{ts,tsx}'",
     "publish": "npm-run-all clean webpack:publish",
-    "server": "webpack-dev-server --color",
+    "server": "webpack-dev-server --color --mode development",
     "webpack:publish": "webpack --env.production -p --display errors-only"
   },
   "devDependencies": {

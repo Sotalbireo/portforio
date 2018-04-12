@@ -1,4 +1,4 @@
-// Fork from Semantic-UI
+// base from Semantic-UI
 
 .segment
   border: 1px solid hsla(210, 6%, 14%, 0.15)
@@ -14,11 +14,11 @@
   position: relative
 
 .segment-header-ribbon
-  border-radius: 0 0.3rem 0.3rem 0
+  border-radius: 0 .3rem .3rem 0
   display: inline-block
   font-size: 0.86em
   line-height: 1
-  margin: 0 1.2em 0 -1rem
+  margin: 0 0 0 -1rem
   min-width: max-content
   padding: 0.4em 1em 0.6em calc(1rem + 0.8em)
   transition: background 0.1s ease
@@ -40,11 +40,43 @@
   display: inline-block
   font-size: 1.3em
   line-height: 1
-  margin: 0
+  margin: 0 1em 0 1.2rem
   vertical-align: middle
 
-.segment-header-label
+.segment-header-labels
+  display: inline
+  padding: 0
 
+.segment-header-labels-label
+  border-radius: 0 .3rem .3rem 0
+  display: inline-block
+  font-size: .86em
+  line-height: 1
+  margin: 0 0.5em 0 1em
+  min-width: max-content
+  position: relative
+  padding: .4em .8em
+  &:before
+    background-color: inherit
+    border-radius: .3em
+    content: ''
+    height: 1.4em
+    position: absolute
+    right: 100%
+    transform: translateY(-50%) translateX(50%) rotate(-45deg)
+    top: 50%
+    width: 1.4em
+  &:after
+    background-color: #fff !important
+    border-radius: 50%
+    box-shadow: 0 -1px 1px 0 hsla(0, 0%, 0%, 0.3)
+    content: ''
+    height: .4em
+    left: 0
+    position: absolute
+    top: 50%
+    transform: translateY(-50%) translateX(-50%)
+    width: .4em
 
 .segment-body
   padding: 1em
@@ -71,3 +103,34 @@
     color: $color-secondary-text
     &:after
       border-color: $color-secondary-dark
+  &.mod-php
+    background-color: $color-php
+    border-color: darken($color-php, 10%)
+    color: $color-white
+    &:after
+      border-color: darken($color-php, 10%)
+  &.mod-pug
+    background-color: $color-pug
+    border-color: darken($color-pug, 10%)
+    color: $color-white
+    &:after
+      border-color: darken($color-pug, 10%)
+  &.mod-typescript
+    background-color: $color-typescript
+    border-color: darken($color-typescript, 10%)
+    color: $color-white
+    &:after
+      border-color: darken($color-typescript, 10%)
+
+.segment-header-labels-label
+  &.mod-electron
+    background-color: $color-electron
+  &.mod-html5
+    background-color: hsl(18, 87.9%, 54.7%)
+    color: $color-white
+  &.mod-sass
+    background-color: hsl(330, 52%, 60%)
+    color: $color-white
+  &.mod-typescript
+    background-color: $color-typescript
+    color: $color-white

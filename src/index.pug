@@ -9,13 +9,27 @@ block body
 			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_11.png')
 		.grid-2cols-col
 			h1 こんにちは、世界
-			p うまいこと書きたい
-			p ぬるぽ
+			p はろーはろーはろー。
+			p こちらオタク、こちらオタク。
+			p 応答せよ、応答せよ&mdash;&mdash;
 	.grid
+		h2 主だった製作物
 		each product in Products
 			.segment
 				.segment-header
-					span.segment-header-ribbon.mod-primary= product.mainLanguage
+					- ribbon = `mod-${product.mainLanguage.toLowerCase()}`
+					span.segment-header-ribbon(class=ribbon)= product.mainLanguage
 					h3.segment-header-content= product.name
+					ul.segment-header-labels
+						each lang in product.languages
+							- label = `mod-${lang.toLowerCase()}`
+							li.segment-header-labels-label(class=label)= lang
 				.segment-body
 					p= product.overview
+	.grid
+		h2 主だった経歴
+		.segment
+			.segment-header
+				h3.segment-header-content いつぞや
+			.segment-body
+				p あれした
