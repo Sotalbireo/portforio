@@ -3,6 +3,7 @@ extends _layout
 block append attributes
 	- var title = 'the Portfolio'
 	include Variables/_Products
+	include _module/_svg-github
 block body
 	.grid.grid-2cols
 		.grid-2cols-col
@@ -17,19 +18,25 @@ block body
 		each product in Products
 			.segment
 				.segment-header
-					- ribbon = `mod-${product.mainLanguage.toLowerCase()}`
-					span.segment-header-ribbon(class=ribbon)= product.mainLanguage
-					h3.segment-header-content= product.name
-					ul.segment-header-labels
-						each lang in product.languages
-							- label = `mod-${lang.toLowerCase()}`
-							li.segment-header-labels-label(class=label)= lang
+					.segment-header-aside
+						- ribbon = `mod-${product.mainLanguage.toLowerCase()}`
+						span.segment-header-aside-ribbon(class=ribbon)= product.mainLanguage
+					.segment-header-main
+						h3.segment-header-main-content= product.name + ' '
+							if product.repository.type == 'github'
+								a(href=product.repository.href target='_blank')
+									+svg-github('1em')
+						ul.segment-header-main-labels
+							each lang in product.languages
+								- label = `mod-${lang.toLowerCase()}`
+								li.segment-header-main-labels-label(class=label)= lang
 				.segment-body
 					p= product.overview
 	.grid
 		h2 主だった経歴
 		.segment
 			.segment-header
-				h3.segment-header-content いつぞや
+				.segment-header-main
+					h3.segment-header-main-content いつぞや
 			.segment-body
 				p あれした

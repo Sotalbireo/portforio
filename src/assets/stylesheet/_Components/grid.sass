@@ -12,7 +12,7 @@
   position: relative
 
 .grid-2cols-col
-  flex: auto
+  flex: 0 1 100%
   max-width: 48%
   position: relative
 
@@ -23,12 +23,19 @@
 
 @media #{$small}
   .grid
-    width: 100%
+    margin: 0 1rem
+    width: auto
 
   .grid-2cols
     flex-direction: column
     padding: 0
 
   .grid-2cols-col
-    margin: 0 1rem
     max-width: 100%
+
+
+
+
+.grid-2cols
+  &.m-vertical-bottom
+    align-content: flex-end

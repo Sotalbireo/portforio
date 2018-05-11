@@ -9,20 +9,21 @@ html(lang='ja')
 		title= title
 		link(rel='stylesheet', href='/assets/stylesheet/index.css')
 		block meta
-	body(style='margin-top:1rem;')
+	body(style='margin-top:1rem')
 		block body
-		footer.grid(style='margin-top:5rem;')
+		footer.grid(style='margin-top:5rem')
 			block footer
 				p このサイトは、Semantic-UI、Bootstrapなどのデザインフレームワークを基にデザインされています。
-				.grid-2cols
+					br
+					| サイト内に記載のある企業・商品・サービスなどの名称・ロゴは、それぞれの権利者によって管理・商標登録されているものです。
+				.grid-2cols.m-vertical-bottom
 					.grid-2cols-col
 						address
-							small
-								| --
+							small --
 								br
 								| Sota SASAKI (Sotalbireo)
 								each v in SNSs
 									br
 									| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]
 					.grid-2cols-col.u-text-right
-						p: small.copywrite ©2018 Sota SASAKI, Sixth-Neighbours.
+						p: small ©2018 Sota SASAKI, Sixth-Neighbours.
