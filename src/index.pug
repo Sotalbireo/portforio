@@ -3,16 +3,20 @@ extends _layout
 block append attributes
 	- var title = 'the Portfolio'
 	include Variables/_Products
-	include _module/_svg-github
+	include module/_svg-github
 block body
 	.grid.grid-2cols
 		.grid-2cols-col
-			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_11.png')
+			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_17.png')
 		.grid-2cols-col
 			h1 こんにちは、世界
 			p はろーはろーはろー。
 			p こちらオタク、こちらオタク。
 			p 応答せよ、応答せよ&mdash;&mdash;
+			h2 略歴
+			dl
+				dt April 2012
+				dd in 大学
 	.grid
 		h2 主だった製作物
 		each product in Products

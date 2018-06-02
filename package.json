@@ -6,17 +6,15 @@
   "description": "the Portfolio.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sotalbireo/Sotalbireo.github.io.git"
+    "url": "git+https://github.com/Sotalbireo/github.userpage.src.git"
   },
   "scripts": {
-    "build": "webpack --color --mode development",
-    "clean": "npm-run-all --parallel clean:*",
-    "clean:develop": "del-cli dist/**/*",
-    "clean:publish": "del-cli Sotalbireo.github.io/* !.gitignore",
-    "test": "tslint --project ./ './src/**/*.{ts,tsx}'",
-    "publish": "npm-run-all clean webpack:publish",
-    "server": "webpack-dev-server --color --mode development",
-    "webpack:publish": "webpack --env.production --mode production --display errors-only"
+    "clean": "del-cli Sotalbireo.github.io/* !.gitignore",
+    "devel": "webpack-dev-server --color --mode development",
+    "test": "npm-run-all test:lint",
+    "test:lint": "tslint --project ./ './src/**/*.{ts,tsx}'",
+    "publish": "npm-run-all clean publish:build",
+    "publish:build": "webpack --env.production --mode production --display errors-only"
   },
   "devDependencies": {
     "@types/copy-webpack-plugin": "^4.4.1",

@@ -8,8 +8,7 @@ import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const dir = {
 	src : path.resolve(__dirname, 'src'),
-	dest: path.resolve(__dirname, 'dist'), // for Develop use.
-	pub: path.resolve(__dirname, 'Sotalbireo.github.io') // for Publish use.
+	dest: path.resolve(__dirname, 'Sotalbireo.github.io')
 };
 
 const convertExt = {
@@ -122,9 +121,6 @@ const config = {
 
 module.exports = (env: any) => {
 	if(env && env.production) {
-
-		config.output.path = dir.pub;
-
 		config.plugins = config.plugins.concat([
 			new webpack.LoaderOptionsPlugin({
 				minimize: true
