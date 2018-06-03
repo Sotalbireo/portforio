@@ -21,7 +21,7 @@ type convertExtFrom = 'pug' | 'sass' | 'ts';
 const files: webpack.Entry = {};
 Object.keys(convertExt).forEach(from => {
 	const to = convertExt[(from as convertExtFrom)];
-	globule.find([`**/*.${from}`, `!**/_*.${from}`, `!**/_*/*.${from}`], {cwd: dir.src}).forEach(filename => {
+	globule.find([`**/*.${from}`, `!**/_*.${from}`], {cwd: dir.src}).forEach(filename => {
 		files[filename.replace(new RegExp(`.${from}$`), `.${to}`)] = path.join(dir.src, filename);
 	});
 });
@@ -30,8 +30,8 @@ const pugLoader = [
 	{
 		loader: 'html-loader',
 		options: {
-			removeComments: true,
-			minimize: true
+			// removeComments: true,
+			// minimize: true
 		}
 	},
 	'pug-html-loader'
@@ -65,7 +65,29 @@ const tsLoader = [
 	}
 ];
 
+const plugins = () => {
+	let plugins = [
+		new ExtractTextPlugin('[name]'),
+		new CopyPlugin(
+			[{from: {glob: '**/*', dot: true}}],
+			{ignore: Object.keys(convertExt).map(ext => `*.${ext}`)}
+		)
+	];
+	if(process.env.NODE_ENV === 'production') {
+		plugins = plugins.concat([
+			new webpack.LoaderOptionsPlugin({
+				minimize: true
+			}),
+			new webpack.optimize.AggressiveMergingPlugin()
+		]);
+	};
+	return plugins;
+};
+
+
+
 const config = {
+	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 	context: dir.src,
 	target: 'web',
 	entry: files,
@@ -105,28 +127,14 @@ const config = {
 			path.resolve(__dirname, 'src')
 		]
 	},
-	plugins: [
-		new ExtractTextPlugin('[name]'),
-		new CopyPlugin(
-			[{from: {glob: '**/*', dot: true}}],
-			{ignore: Object.keys(convertExt).map(ext => `*.${ext}`)}
-		)
-	],
-	devServer: {
-		contentBase: dir.dest,
+	plugins: plugins(),
+	serve: {
+		content: dir.dest,
 		port: 8000,
-		hot: true
+		hot: {
+			hot: true
+		}
 	}
 }
 
-module.exports = (env: any) => {
-	if(env && env.production) {
-		config.plugins = config.plugins.concat([
-			new webpack.LoaderOptionsPlugin({
-				minimize: true
-			}),
-			new webpack.optimize.AggressiveMergingPlugin()
-		]);
-	};
-	return config
-};
+module.exports = config;

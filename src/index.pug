@@ -1,23 +1,25 @@
 extends _layout
 
 block append attributes
-	- var title = 'the Portfolio'
+	- var title = 'siky.jp'
 	include Variables/_Products
 	include module/_svg-github
+block append meta
+	script(src='/assets/script/index.js')
 block body
-	.grid.grid-2cols
+	section.grid.grid-2cols
 		.grid-2cols-col
 			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_17.png')
 		.grid-2cols-col
-			h1 こんにちは、世界
+			h1 Siky.jp
 			p はろーはろーはろー。
 			p こちらオタク、こちらオタク。
 			p 応答せよ、応答せよ&mdash;&mdash;
 			h2 略歴
 			dl
-				dt April 2012
+				dt 2012
 				dd in 大学
-	.grid
+	section.grid
 		h2 主だった製作物
 		each product in Products
 			.segment
