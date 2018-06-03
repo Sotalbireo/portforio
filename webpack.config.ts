@@ -116,15 +116,15 @@ const config = {
 			},
 			{
 				test: /\.tsx?$/,
-				exclude: /node_modules(?!\/webpack-dev-server)/,
+				exclude: /node_modules(?!\/webpack-serve)/,
 				use: tsLoader
 			}
 		]
 	},
 	resolve: {
 		modules: [
-			'node_modules',
-			path.resolve(__dirname, 'src')
+			path.resolve(__dirname, 'src'),
+			'node_modules'
 		]
 	},
 	plugins: plugins(),
