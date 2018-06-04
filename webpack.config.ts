@@ -4,7 +4,7 @@ import * as globule from 'globule';
 import * as CopyPlugin from 'copy-webpack-plugin';
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-
+const isProd = process.env.NODE_ENV === 'production';
 
 const dir = {
 	src : path.resolve(__dirname, 'src'),
@@ -21,7 +21,7 @@ type convertExtFrom = 'pug' | 'sass' | 'ts';
 const files: webpack.Entry = {};
 Object.keys(convertExt).forEach(from => {
 	const to = convertExt[(from as convertExtFrom)];
-	globule.find([`**/*.${from}`, `!**/_*.${from}`], {cwd: dir.src}).forEach(filename => {
+	globule.find([`**/*.${from}`, `!**/_*.${from}`, `!**/*.d.ts`], {cwd: dir.src}).forEach(filename => {
 		files[filename.replace(new RegExp(`.${from}$`), `.${to}`)] = path.join(dir.src, filename);
 	});
 });
@@ -30,8 +30,8 @@ const pugLoader = [
 	{
 		loader: 'html-loader',
 		options: {
-			// removeComments: true,
-			// minimize: true
+			removeComments: isProd,
+			minimize: isProd
 		}
 	},
 	'pug-html-loader'
@@ -41,7 +41,7 @@ const sassLoader = [
 	{
 		loader: 'css-loader',
 		options: {
-			minimize: true
+			minimize: isProd
 		}
 	},
 	{
@@ -60,6 +60,8 @@ const tsLoader = [
 		loader: 'tslint-loader',
 		options: {
 			configFile: 'tslint.json',
+			fix: true,
+			tsConfigFile: 'tsconfig.json',
 			typeCheck: true
 		}
 	}
@@ -71,30 +73,31 @@ const plugins = () => {
 		new CopyPlugin(
 			[{from: {glob: '**/*', dot: true}}],
 			{ignore: Object.keys(convertExt).map(ext => `*.${ext}`)}
-		)
+		),
+		new webpack.LoaderOptionsPlugin({
+			minimize: isProd
+		})
 	];
-	if(process.env.NODE_ENV === 'production') {
+	if(isProd) {
 		plugins = plugins.concat([
-			new webpack.LoaderOptionsPlugin({
-				minimize: true
-			}),
 			new webpack.optimize.AggressiveMergingPlugin()
 		]);
 	};
+
 	return plugins;
 };
 
 
 
 const config = {
-	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+	mode: isProd ? 'production' : 'development',
 	context: dir.src,
 	target: 'web',
 	entry: files,
 	output: {
 		filename: '[name]',
 		jsonpFunction: 'vendor',
-		path: dir.dest
+		path: dir.dest,
 	},
 	module: {
 		rules: [
@@ -125,16 +128,15 @@ const config = {
 		modules: [
 			path.resolve(__dirname, 'src'),
 			'node_modules'
-		]
+		],
+		extensions: ['*', '.ts', '.tsx', '.pug', '.sass']
 	},
 	plugins: plugins(),
 	serve: {
 		content: dir.dest,
-		port: 8000,
-		hot: {
-			hot: true
-		}
+		hot: false,
+		port: 8000
 	}
 }
 
-module.exports = config;
+export default config;

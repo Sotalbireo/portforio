@@ -9,12 +9,13 @@
     "url": "git+https://github.com/Sotalbireo/github.userpage.src.git"
   },
   "scripts": {
-    "clean": "del-cli Sotalbireo.github.io/* !.gitignore",
-    "devel": "ts-node ./node_modules/.bin/webpack-serve",
+    "clean": "del-cli 'Sotalbireo.github.io/**/*' '!Sotalbireo.github.io/CNAME'",
+    "devel": "npm-run-all clean devel:build",
+    "devel:build": "webpack-serve",
     "test": "npm-run-all test:lint",
-    "test:lint": "tslint --project ./ './src/**/*.{ts,tsx}'",
-    "pub": "npm-run-all clean publish:build",
-    "publish:build": "webpack --require ts-node/register"
+    "test:lint": "tslint -p ./ './src/**/*.{ts,tsx}' '!./src/**/*.d.{ts,tsx}'",
+    "prod": "npm-run-all clean prod:build",
+    "prod:build": "cross-env NODE_ENV=production webpack --run-prod --bail --require ts-node/register"
   },
   "devDependencies": {
     "@types/copy-webpack-plugin": "^4.4.1",

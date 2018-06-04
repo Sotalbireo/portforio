@@ -1,4 +1,5 @@
 export default class Wave {
+	public interval: any;
 	private canvas: HTMLCanvasElement;
 	private ctx: CanvasRenderingContext2D;
 	private height: number;
@@ -8,32 +9,34 @@ export default class Wave {
 	private originY: number;
 	private originX: number;
 	private subsets: number[] = [];
-	public interval: any;
 
 	constructor() {
 		this.fps = Math.floor(1000 / 25);
 		this.ms = 0;
 		this.height = window.innerHeight;
 		this.width = window.innerWidth;
+		this.originY = Math.floor(this.height / 2);
+		this.originX = 0;
+		for (let i = 0; i < 3; ++i) {
+			this.subsets[i] = Math.random() * Math.PI;
+		}
 		this.canvas = document.createElement('canvas');
+		this.ctx = this.canvas.getContext('2d')!;
+	}
+
+	public execute = () => {
 		document.querySelector('body')!.appendChild(this.canvas);
 		document.body.style.backgroundColor = 'hsla(240,100%,12.5%,0.4)';
 		this.canvas.height = this.height;
 		this.canvas.width = this.width;
 		this.canvas.setAttribute('style',
 			'position:fixed;z-index:-10000;top:0;left:0;');
-
-		this.originY = Math.floor(this.height / 2);
-		this.originX = 0;
-		for (let i = 0; i < 3; ++i) {
-			this.subsets[i] = Math.random() * Math.PI;
-		}
-		this.ctx = this.canvas.getContext('2d')!;
 		this.ctx.lineJoin = 'round';
 		this.ctx.lineWidth = 2;
 		this.ctx.save();
 		this.draw();
 		this.interval = setInterval(this.draw, this.fps);
+
 	}
 
 	public draw = () => {

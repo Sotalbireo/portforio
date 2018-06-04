@@ -1,7 +1,6 @@
-// declare class Wave {}
-
-import Wave from './_Wave.ts';
+import Wave from './_Wave';
 
 document.addEventListener('DOMContentLoaded', () => {
-	new Wave();
+	const wave = new Wave();
+	wave.execute();
 });

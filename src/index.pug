@@ -12,15 +12,13 @@ block body
 			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_17.png')
 		.grid-2cols-col
 			h1 Siky.jp
-			p はろーはろーはろー。
-			p こちらオタク、こちらオタク。
-			p 応答せよ、応答せよ&mdash;&mdash;
-			h2 略歴
-			dl
-				dt 2012
-				dd in 大学
+			section
+				h2 Profile
+				dl
+					dt Name
+					dd Kyohei SASAKI (P.N.)
 	section.grid
-		h2 主だった製作物
+		h2 Produces
 		each product in Products
 			.segment
 				.segment-header
@@ -39,10 +37,10 @@ block body
 				.segment-body
 					p= product.overview
 	.grid
-		h2 主だった経歴
+		h2 主な経歴
 		.segment
 			.segment-header
 				.segment-header-main
-					h3.segment-header-main-content いつぞや
+					h3.segment-header-main-content April 2012
 			.segment-body
-				p あれした
+				p 入学
