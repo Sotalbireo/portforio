@@ -1,7 +1,7 @@
 doctype html
 block attributes
 	include _config.pug
-html(lang='ja')
+html(lang='en')
 	head
 		meta(charset='utf-8')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -19,7 +19,7 @@ html(lang='ja')
 						address
 							small --
 								br
-								| Sota SASAKI (Sotalbireo)
+								| Kyohei SASAKI (Sotalbireo)
 								each v in SNSs
 									br
 									| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]

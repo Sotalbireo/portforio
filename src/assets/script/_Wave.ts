@@ -4,15 +4,14 @@ export default class Wave {
 	private ctx: CanvasRenderingContext2D;
 	private height: number = window.innerHeight;
 	private width: number = window.innerWidth;
-	private fps: number = Math.floor(1000 / 25);
-	private ms: number = 0;
-	private originY: number;
-	private originX: number = 0;
+	private fpms: number = Math.floor(1000 / 20);
+	private time: number = 0;
+	private level: number;
 	private subsets: number[] = [];
-	private onFocus: boolean = false;
+	private onFocus: boolean = true;
 
 	constructor() {
-		this.originY = Math.floor(this.height / 2);
+		this.level = Math.floor(this.height / 2);
 		for (let i = 0; i < 3; ++i) {
 			this.subsets[i] = Math.random() * Math.PI;
 		}
@@ -31,41 +30,50 @@ export default class Wave {
 		this.ctx.lineWidth = 2;
 		this.ctx.save();
 		this.draw();
-		this.interval = setInterval(this.draw, this.fps);
-		this.onFocus = true;
+		this.interval = setInterval(this.draw, this.fpms);
 		window.addEventListener('blur', () => {
 			this.onFocus = false;
 		});
 		window.addEventListener('focus', () => {
 			this.onFocus = true;
 		});
+		window.addEventListener('resize', this.resize);
+	}
+
+	public resize = () => {
+		this.height = window.innerHeight;
+		this.canvas.height = this.height;
+		this.width = window.innerWidth;
+		this.canvas.width = this.width;
 	}
 
 	public draw = () => {
 		if (!this.onFocus) { return; }
 
 		const drawPath = (t: number, periodicity = 200) => {
-			const amplitude = 50 + 40 * Math.sin(t / 4);
-			this.ctx.moveTo(this.originX, this.originY + Math.sin(t) * amplitude);
-			let i = this.originX;
-			let x: number;
-			let y: number;
-			for (; i <= this.width; i += 20) {
-				x = t + (i - this.originX) / periodicity;
-				y = Math.sin(x);
-				this.ctx.lineTo(i, this.originY + y * amplitude);
+			const amplitude = 30 + 20 * Math.sin(t / 7);
+			let i = 0;
+			let y = Math.sin(t);
+			this.ctx.moveTo(0, this.level + y * amplitude);
+			for (; i <= this.width; i += 25) {
+				y = Math.sin(t + i / periodicity);
+				this.ctx.lineTo(i, this.level + y * amplitude);
 			}
-			this.ctx.lineTo(i, this.height);
-			this.ctx.lineTo(this.originX, this.height);
+			y = this.level + Math.sin(t + i / periodicity) * amplitude;
+			this.ctx.lineTo(i, y);
+			this.ctx.lineTo(this.width, this.height);
+			this.ctx.lineTo(0, this.height);
 		};
 
-		this.ms += this.fps;
+		this.time += 1.5;
+		const rad = this.time * Math.PI / 90;
+
 		this.ctx.clearRect(0, 0, this.width, this.height);
 		this.ctx.save();
 		this.ctx.strokeStyle = 'hsla(251,72.6%,24.3%,1)';
 		this.ctx.fillStyle = 'hsla(251,72.6%,24.3%,0.4)';
 		this.ctx.beginPath();
-		drawPath((this.ms / this.fps * Math.PI / 90 ) - this.subsets[0], 541);
+		drawPath(rad - this.subsets[0], 541);
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.restore();
@@ -73,15 +81,15 @@ export default class Wave {
 		this.ctx.strokeStyle = 'hsla(334,79.3%,37.8%,1)';
 		this.ctx.fillStyle = 'hsla(334,79.3%,37.8%,0.3)';
 		this.ctx.beginPath();
-		drawPath((this.ms / this.fps * Math.PI / 90 ) - this.subsets[1], 300);
+		drawPath(rad - this.subsets[1], 300);
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.restore();
 		this.ctx.save();
-		this.ctx.strokeStyle = 'rgba(0,100,255,1)';
-		this.ctx.fillStyle = 'rgba(0,100,255,0.3)';
+		this.ctx.strokeStyle = 'hsla(216,100%,50%,1)';
+		this.ctx.fillStyle = 'hsla(216,100%,50%,0.3)';
 		this.ctx.beginPath();
-		drawPath((this.ms / this.fps * Math.PI / 90 ) - this.subsets[2], 853);
+		drawPath(rad - this.subsets[2], 229);
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.restore();
