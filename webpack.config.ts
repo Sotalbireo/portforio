@@ -41,7 +41,8 @@ const sassLoader = [
 	{
 		loader: 'css-loader',
 		options: {
-			minimize: isProd
+			minimize: isProd,
+			sourceMap: !isProd
 		}
 	},
 	{
@@ -136,7 +137,8 @@ const config = {
 		content: dir.dest,
 		hot: false,
 		port: 8000
-	}
+	},
+	devtool: isProd ? 'eval' : 'cheap-module-eval-source-map'
 }
 
 export default config;

@@ -2,21 +2,17 @@ export default class Wave {
 	public interval: any;
 	private canvas: HTMLCanvasElement;
 	private ctx: CanvasRenderingContext2D;
-	private height: number;
-	private width: number;
-	private fps: number;
-	private ms: number;
+	private height: number = window.innerHeight;
+	private width: number = window.innerWidth;
+	private fps: number = Math.floor(1000 / 25);
+	private ms: number = 0;
 	private originY: number;
-	private originX: number;
+	private originX: number = 0;
 	private subsets: number[] = [];
+	private onFocus: boolean = false;
 
 	constructor() {
-		this.fps = Math.floor(1000 / 25);
-		this.ms = 0;
-		this.height = window.innerHeight;
-		this.width = window.innerWidth;
 		this.originY = Math.floor(this.height / 2);
-		this.originX = 0;
 		for (let i = 0; i < 3; ++i) {
 			this.subsets[i] = Math.random() * Math.PI;
 		}
@@ -26,20 +22,28 @@ export default class Wave {
 
 	public execute = () => {
 		document.querySelector('body')!.appendChild(this.canvas);
-		document.body.style.backgroundColor = 'hsla(240,100%,12.5%,0.4)';
+		this.canvas.className = 'js-no-print';
 		this.canvas.height = this.height;
 		this.canvas.width = this.width;
 		this.canvas.setAttribute('style',
-			'position:fixed;z-index:-10000;top:0;left:0;');
+			'background-color:hsla(240,100%,12.5%,0.4);position:fixed;z-index:-10000;top:0;left:0;');
 		this.ctx.lineJoin = 'round';
 		this.ctx.lineWidth = 2;
 		this.ctx.save();
 		this.draw();
 		this.interval = setInterval(this.draw, this.fps);
-
+		this.onFocus = true;
+		window.addEventListener('blur', () => {
+			this.onFocus = false;
+		});
+		window.addEventListener('focus', () => {
+			this.onFocus = true;
+		});
 	}
 
 	public draw = () => {
+		if (!this.onFocus) { return; }
+
 		const drawPath = (t: number, periodicity = 200) => {
 			const amplitude = 50 + 40 * Math.sin(t / 4);
 			this.ctx.moveTo(this.originX, this.originY + Math.sin(t) * amplitude);

@@ -27,8 +27,14 @@
   max-width: 24%
   position: relative
 
+.grid-heading
+  font-family: 'Cinzel', serif
+  font-size: 2em
+  font-weight: bold
 
 
+
+// ;@media
 @media #{$small}
   .grid
     margin: 0 1rem
@@ -43,7 +49,11 @@
 
 
 
-
+// ;mod
 .grid-2cols
   &.m-vertical-bottom
     align-content: flex-end
+.grid-heading
+  &.m-large
+    font-size: 3em
+    margin-top: 0.3em

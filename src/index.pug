@@ -9,16 +9,20 @@ block append meta
 block body
 	section.grid.grid-2cols
 		.grid-2cols-col
-			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_17.png')
+			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_17.png',width='100%')
 		.grid-2cols-col
-			h1 Siky.jp
+			h1.grid-heading.m-large Siky.jp
 			section
-				h2 Profile
+				h2 > whoami
 				dl
 					dt Name
-					dd Kyohei SASAKI (P.N.)
+					dd Kyohei SASAKI (Pseudonym)
+						br
+						| a.k.a. @sota_n, Sotalbireo.
+					dt Location
+					dd Saitama, JP
 	section.grid
-		h2 Produces
+		h2.grid-heading Produces
 		each product in Products
 			.segment
 				.segment-header
@@ -36,11 +40,17 @@ block body
 								li.segment-header-main-labels-label(class=label)= lang
 				.segment-body
 					p= product.overview
-	.grid
-		h2 主な経歴
+	section.grid
+		h2.grid-heading Career
 		.segment
 			.segment-header
 				.segment-header-main
 					h3.segment-header-main-content April 2012
 			.segment-body
-				p 入学
+				p Matriculate at Tokyo University of Science
+		.segment
+			.segment-header
+				.segment-header-main
+					h3.segment-header-main-content June 2013
+			.segment-body
+				p Started part-time job as an Assistant front-end engineer

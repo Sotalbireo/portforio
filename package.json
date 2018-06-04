@@ -15,7 +15,7 @@
     "test": "npm-run-all test:lint",
     "test:lint": "tslint -p ./ './src/**/*.{ts,tsx}' '!./src/**/*.d.{ts,tsx}'",
     "prod": "npm-run-all clean prod:build",
-    "prod:build": "cross-env NODE_ENV=production webpack --run-prod --bail --require ts-node/register"
+    "prod:build": "cross-env NODE_ENV=production webpack --run-prod --bail"
   },
   "devDependencies": {
     "@types/copy-webpack-plugin": "^4.4.1",
@@ -41,7 +41,6 @@
     "pug-html-loader": "^1.1.5",
     "sass-loader": "^7.0.2",
     "style-loader": "^0.21.0",
-    "ts-node": "^6.0.5",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
     "typescript": "^2.9.1",
@@ -50,8 +49,6 @@
     "webpack-serve": "^1.0.2"
   },
   "dependencies": {
-    "bulma": "^0.7.1",
-    "normalize.css": "^8.0.0",
-    "vue": "^2.5.16"
+    "normalize.css": "^8.0.0"
   }
 }
