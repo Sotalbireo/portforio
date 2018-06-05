@@ -5,6 +5,7 @@ export default class Wave {
 	private height: number = window.innerHeight;
 	private width: number = window.innerWidth;
 	private fpms: number = Math.floor(1000 / 20);
+	private ratio: number = 1.5;
 	private time: number = 0;
 	private level: number;
 	private subsets: number[] = [];
@@ -17,27 +18,22 @@ export default class Wave {
 		}
 		this.canvas = document.createElement('canvas');
 		this.ctx = this.canvas.getContext('2d')!;
-	}
 
-	public execute = () => {
 		document.querySelector('body')!.appendChild(this.canvas);
 		this.canvas.className = 'js-no-print';
 		this.canvas.height = this.height;
 		this.canvas.width = this.width;
 		this.canvas.setAttribute('style',
-			'background-color:hsla(240,100%,12.5%,0.4);position:fixed;z-index:-10000;top:0;left:0;');
+			'background-color:hsla(240,100%,12.5%,0.5);position:fixed;z-index:-10000;top:0;left:0;');
 		this.ctx.lineJoin = 'round';
 		this.ctx.lineWidth = 2;
 		this.ctx.save();
+	}
+
+	public execute = () => {
 		this.draw();
 		this.interval = setInterval(this.draw, this.fpms);
-		window.addEventListener('blur', () => {
-			this.onFocus = false;
-		});
-		window.addEventListener('focus', () => {
-			this.onFocus = true;
-		});
-		window.addEventListener('resize', this.resize);
+		this.eventSet();
 	}
 
 	public resize = () => {
@@ -65,7 +61,7 @@ export default class Wave {
 			this.ctx.lineTo(0, this.height);
 		};
 
-		this.time += 1.5;
+		this.time += this.ratio;
 		const rad = this.time * Math.PI / 90;
 
 		this.ctx.clearRect(0, 0, this.width, this.height);
@@ -81,7 +77,7 @@ export default class Wave {
 		this.ctx.strokeStyle = 'hsla(334,79.3%,37.8%,1)';
 		this.ctx.fillStyle = 'hsla(334,79.3%,37.8%,0.3)';
 		this.ctx.beginPath();
-		drawPath(rad - this.subsets[1], 300);
+		drawPath(rad - this.subsets[1], 337);
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.restore();
@@ -93,5 +89,15 @@ export default class Wave {
 		this.ctx.closePath();
 		this.ctx.fill();
 		this.ctx.restore();
+	}
+
+	private eventSet = () => {
+		window.addEventListener('blur', () => {
+			this.onFocus = false;
+		});
+		window.addEventListener('focus', () => {
+			this.onFocus = true;
+		});
+		window.addEventListener('resize', this.resize);
 	}
 }

@@ -13,15 +13,15 @@ html(lang='en')
 		block body
 		footer.grid(style='margin-top:5rem')
 			block footer
-				p Any of the trademarks, service marks, collective marks, design rights or similar rights that are mentioned, used or cited are the property of their respective owners.
+				p.u-mb-0 Any of the trademarks, service marks, collective marks, design rights or similar rights that are mentioned, used or cited are the property of their respective owners.
 				.grid-2cols.m-vertical-bottom
 					.grid-2cols-col
 						address
-							small --
+							small &mdash;&mdash;
 								br
 								| Kyohei SASAKI (Sotalbireo)
 								each v in SNSs
 									br
 									| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]
-					.grid-2cols-col.u-text-right
-						p: small ©2018 Kyohei SASAKI, Sixth-Neighbours.
+					.grid-2cols-col.m-align-end.u-text-right
+						p.u-mb-0: small ©2018 Kyohei SASAKI, Sixth-Neighbours.

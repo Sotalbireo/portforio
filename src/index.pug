@@ -9,22 +9,30 @@ block append meta
 block body
 	section.grid.grid-2cols
 		.grid-2cols-col
-			img.grid-2cols-col-img(src='http://asuka.absolute-ze.ro/img/cinderella_17.png',width='100%')
+			img.grid-2cols-col-img(
+				decoding=async,
+				src='/assets/image/asuka.png',
+				style='width:100%'
+			)
 		.grid-2cols-col
-			h1.grid-heading.m-large Siky.jp
-			section.u-font-lato
-				h2 > whoami
-				dl
-					dt Name
-					dd Kyohei SASAKI (Pseudonym)
-						br
-						| a.k.a. @sota_n, Sotalbireo.
-					dt Location
-					dd Saitama, JP
+			h1.grid-heading.m-large.u-color-primary-d Siky.jp
+			section.segment
+				.segment-header
+					.segment-header-main
+						h2.segment-header-main-content > whoami
+				.segment-body
+					dl.u-ma-0
+						dt Name
+						dd Kyohei SASAKI (Pseudonym)
+							br
+							| a.k.a. @sota_n, Sotalbireo.
+						dt Location
+						dd Saitama, JP
+					-// p more detail...
 	section.grid
-		h2.grid-heading Produces
+		h2.grid-heading.m-text-inverse Produces
 		each product in Products
-			.segment
+			section.segment
 				.segment-header
 					.segment-header-aside
 						- ribbon = `mod-${product.mainLanguage.toLowerCase()}`
@@ -41,7 +49,7 @@ block body
 				.segment-body
 					p= product.overview
 	section.grid
-		h2.grid-heading Career
+		h2.grid-heading.m-text-inverse Career
 		.segment
 			.segment-header
 				.segment-header-main

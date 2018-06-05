@@ -26,6 +26,15 @@ Object.keys(convertExt).forEach(from => {
 	});
 });
 
+const imgLoader = [
+	{
+		loader: 'file-loader',
+		options: {
+			name: '[path][sha1:hash:base64:9999].[ext]'
+		}
+	}
+];
+
 const pugLoader = [
 	{
 		loader: 'html-loader',
@@ -103,6 +112,10 @@ const config = {
 	module: {
 		rules: [
 			{
+				test: /\.(jpg|png)$/,
+				use: imgLoader
+			},
+			{
 				test: /\.pug$/,
 				use: ExtractTextPlugin.extract(pugLoader)
 			},
@@ -134,7 +147,6 @@ const config = {
 	},
 	plugins: plugins(),
 	serve: {
-		content: dir.dest,
 		hot: false,
 		port: 8000
 	},
