@@ -16,12 +16,11 @@ html(lang='en')
 				p.u-mb-0 Any of the trademarks, service marks, collective marks, design rights or similar rights that are mentioned, used or cited are the property of their respective owners.
 				.grid-2cols.m-vertical-bottom
 					.grid-2cols-col
-						address
+						address.u-lh-1
 							small &mdash;&mdash;
 								br
 								| Kyohei SASAKI (Sotalbireo)
-								each v in SNSs
-									br
-									| #{v.name}: #[a(href=v.uri, target='_blank') @#{author}@#{v.domain}]
+								br
+								a(href='https://social.mikutter.hachune.net/@sota_n', target='_blank') @sota_n@social.mikutter.hachune.net
 					.grid-2cols-col.m-align-end.u-text-right
-						p.u-mb-0: small ©2018 Kyohei SASAKI, Sixth-Neighbours.
+						p.u-mb-0.u-lh-1: small ©2018 Kyohei SASAKI, Sixth-Neighbours.
