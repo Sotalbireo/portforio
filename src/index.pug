@@ -15,22 +15,33 @@ block body
 				style='width:100%'
 			)
 		.grid-2cols-col
-			h1.grid-heading.m-large.u-color-primary-d Siky.jp
+			h1.grid-heading.mod-large.u-color-primary-d Siky.jp
 			section.segment
 				.segment-header
 					.segment-header-main
 						h2.segment-header-main-content > whoami
 				.segment-body
 					dl.u-ma-0
-						dt Name
-						dd Kyohei SASAKI (Pseudonym)
-							br
-							| a.k.a. @sota_n, Sotalbireo.
-						dt Location
-						dd Saitama, JP
-					-// p more detail...
+						div
+							dt Name
+							dd Kyohei SASAKI (Pseudonym)
+								br
+								| a.k.a. @sota_n, Sotalbireo.
+						div
+							dt Location
+							dd Saitama, JP
+						div
+							dt Chief accounts
+							dd
+								ul.u-ma-0
+									li: a(href='https://siky.hateblo.jp/', target='_blank') Blog
+									li: a(href='https://github.com/sotalbireo/', target='_blank')= 'Github '
+										+svg-github('1em', 'vertical-align:baseline')
+									li: a(href='https://social.mikutter.hachune.net/@sota_n', target='_blank') Mastodon
+
+					//- p more detail...
 	section.grid
-		h2.grid-heading.m-text-inverse Produces
+		h2.grid-heading.mod-text-inverse Produces
 		each product in Products
 			section.segment
 				.segment-header
@@ -40,7 +51,7 @@ block body
 					.segment-header-main
 						h3.segment-header-main-content= product.name + ' '
 							if product.repository.type === 'github'
-								a(href=product.repository.href target='_blank')
+								a(href=product.repository.href, target='_blank')
 									+svg-github('1em')
 						ul.segment-header-main-labels
 							each lang in product.languages
@@ -49,10 +60,10 @@ block body
 				.segment-body
 					p= product.overview
 					if product.link
-						p: a(href=product.link target='_blank') -> Go to web page.
+						p: a(href=product.link, target='_blank') -> Go to web page.
 
 	section.grid
-		h2.grid-heading.m-text-inverse Career
+		h2.grid-heading.mod-text-inverse Career
 		.segment
 			.segment-header
 				.segment-header-main
