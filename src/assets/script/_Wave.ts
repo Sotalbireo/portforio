@@ -24,16 +24,17 @@ export default class Wave {
 		this.canvas.height = this.height;
 		this.canvas.width = this.width;
 		this.canvas.setAttribute('style',
-			'background-color:hsla(240,100%,12.5%,0.5);position:fixed;z-index:-10000;top:0;left:0;');
+			'background-color:hsla(240,100%,12.5%,0.4);position:fixed;z-index:-10000;top:0;left:0;');
 		this.ctx.lineJoin = 'round';
-		this.ctx.lineWidth = 2;
+		this.ctx.lineWidth = 3;
 		this.ctx.save();
 	}
 
-	public execute = () => {
+	public execute = (savemode: boolean) => {
 		this.draw();
-		this.interval = setInterval(this.draw, this.fpms);
 		this.eventSet();
+		if (savemode) { return; }
+		this.interval = setInterval(this.draw, this.fpms);
 	}
 
 	public resize = () => {
@@ -46,7 +47,7 @@ export default class Wave {
 	public draw = () => {
 		if (!this.onFocus) { return; }
 
-		const drawPath = (t: number, periodicity = 200) => {
+		const drawPath = (t: number, periodicity: number) => {
 			const amplitude = 30 + 20 * Math.sin(t / 7);
 			let i = 0;
 			let y = Math.sin(t);

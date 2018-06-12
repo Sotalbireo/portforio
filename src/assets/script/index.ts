@@ -1,3 +1,4 @@
+import Utility from './_Utility';
 import Wave from './_Wave';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,5 +8,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	const wave = new Wave();
-	wave.execute();
+	wave.execute(Utility.isPalmtop());
 });
