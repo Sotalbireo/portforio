@@ -11,9 +11,10 @@ html(lang='en')
 		block meta
 	body(style='margin-top:1rem')
 		block body
-		footer.grid(style='margin-top:5rem')
-			block footer
-				p.u-mb-0 Any of the trademarks, service marks, collective marks, design rights or similar rights that are mentioned, used or cited are the property of their respective owners.
+		footer
+			.grid
+				block footer
+				p.u-mb-0: small Any of the trademarks, service marks, collective marks, design rights or similar rights that are mentioned, used or cited are the property of their respective owners.
 				.grid-2cols.mod-vertical-bottom
 					.grid-2cols-col
 						address.u-lh-1
@@ -21,6 +22,6 @@ html(lang='en')
 								br
 								| Kyohei SASAKI (Sotalbireo)
 								br
-								a(href='https://social.mikutter.hachune.net/@sota_n', target='_blank') @sota_n@social.mikutter.hachune.net
+								a.mod-color-inverse(href='https://social.mikutter.hachune.net/@sota_n', target='_blank') @sota_n@social.mikutter.hachune.net
 					.grid-2cols-col.mod-align-end.u-text-right
 						p.u-mb-0.u-lh-1: small ©2018 Kyohei SASAKI, Sixth-Neighbours.

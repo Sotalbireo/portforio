@@ -10,6 +10,7 @@ export default class Wave {
 	private level: number;
 	private subsets: number[] = [];
 	private onFocus: boolean = true;
+	private savemode: boolean = false;
 
 	constructor() {
 		this.level = Math.floor(this.height / 2);
@@ -24,7 +25,7 @@ export default class Wave {
 		this.canvas.height = this.height;
 		this.canvas.width = this.width;
 		this.canvas.setAttribute('style',
-			'background-color:hsla(240,100%,12.5%,0.4);position:fixed;z-index:-10000;top:0;left:0;');
+			'position:fixed;z-index:-10000;top:0;left:0;');
 		this.ctx.lineJoin = 'round';
 		this.ctx.lineWidth = 3;
 		this.ctx.save();
@@ -33,6 +34,7 @@ export default class Wave {
 	public execute = (savemode: boolean) => {
 		this.draw();
 		this.eventSet();
+		this.savemode = savemode;
 		if (savemode) { return; }
 		this.interval = setInterval(this.draw, this.fpms);
 	}
@@ -42,10 +44,11 @@ export default class Wave {
 		this.canvas.height = this.height;
 		this.width = window.innerWidth;
 		this.canvas.width = this.width;
+		if (this.savemode) { this.draw(true); }
 	}
 
-	public draw = () => {
-		if (!this.onFocus) { return; }
+	public draw = (force = false) => {
+		if (!force && !this.onFocus) { return; }
 
 		const drawPath = (t: number, periodicity: number) => {
 			const amplitude = 30 + 20 * Math.sin(t / 7);

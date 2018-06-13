@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as globule from 'globule';
 import * as CopyPlugin from 'copy-webpack-plugin';
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
+import * as os from 'os';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -25,6 +26,8 @@ Object.keys(convertExt).forEach(from => {
 		files[filename.replace(new RegExp(`.${from}$`), `.${to}`)] = path.join(dir.src, filename);
 	});
 });
+
+
 
 const imgLoader = [
 	{
@@ -77,6 +80,8 @@ const tsLoader = [
 	}
 ];
 
+
+
 const plugins = () => {
 	let plugins = [
 		new ExtractTextPlugin('[name]'),
@@ -88,6 +93,7 @@ const plugins = () => {
 			minimize: isProd
 		})
 	];
+
 	if(isProd) {
 		plugins = plugins.concat([
 			new webpack.optimize.AggressiveMergingPlugin()
@@ -96,6 +102,32 @@ const plugins = () => {
 
 	return plugins;
 };
+
+
+
+const ip = () => {
+	const ni = os.networkInterfaces();
+	if (ni.hasOwnProperty('eth0')) {
+		for (const i in ni.eth0) {
+			if (ni.eth0[i].family === 'IPv4') {
+				return ni.eth0[i].address;
+			}
+		}
+	} else if (ni.hasOwnProperty('wlan0')) {
+		for (const i in ni.wlan0) {
+			if (ni.wlan0[i].family === 'IPv4') {
+				return ni.wlan0[i].address;
+			}
+		}
+	} else if (ni.hasOwnProperty('en1')) {
+		for (const i in ni.en1) {
+			if (ni.en1[i].family === 'IPv4') {
+				return ni.en1[i].address;
+			}
+		}
+	}
+	return 'localhost';
+}
 
 
 
@@ -147,10 +179,11 @@ const config = {
 	},
 	plugins: plugins(),
 	serve: {
+		host: ip(),
 		hot: false,
 		port: 8000
 	},
-	devtool: isProd ? 'eval' : 'cheap-module-eval-source-map'
+	devtool: isProd ? 'eval' : 'source-map'
 }
 
 export default config;
