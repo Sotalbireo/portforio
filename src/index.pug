@@ -3,7 +3,7 @@ extends _layout
 block append attributes
 	- var title = 'siky.jp'
 	include Variables/_Products
-	include module/_svg-github
+	include module/_svg-icons
 block append meta
 	script(src='/assets/script/index.js')
 block body
@@ -37,7 +37,8 @@ block body
 									li: a(href='https://siky.hateblo.jp/', target='_blank') Blog
 									li: a(href='https://github.com/sotalbireo/', target='_blank')= 'Github '
 										+svg-github('1em', 'vertical-align:baseline')
-									li: a(href='https://social.mikutter.hachune.net/@sota_n', target='_blank') Mastodon
+									li: a(href='https://social.mikutter.hachune.net/@sota_n', target='_blank')= 'Mastodon '
+										+svg-mastodon({}, 'vertical-align:middle;width:1.2em;')
 
 					//- p more detail...
 	section.grid
