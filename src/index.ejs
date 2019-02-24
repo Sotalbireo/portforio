@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title><%= htmlWebpackPlugin.options.title %></title>
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+
+<div id="Main">
+</div>
+
+<footer lang="en">
+    <div class="grid">
+        <p class="u-mb-0"><small>Any of the trademarks, service marks, collective marks, design rights or similar rights that are mentioned, used or cited are the property of their respective owners.</small></p>
+        <div class="grid-2cols mod-vertical-bottom">
+            <div class="grid-2cols-col">
+                <address class="u-lh-1"><small>&mdash;&mdash;<br>Kyohei SASAKI (Sotalbireo) <br><a href="https://social.mikutter.hachune.net/@sota_n" class="mod-color-inverse" target="_blank">@sota_n@social.mikutter.hachune.net</a>
+                </small></address>
+            </div>
+            <div class="grid-2cols-col mod-align-end u-text-right">
+                <p class="u-mb-0 u-lh-1"><small>© 2018-2019 Kyohei SASAKI, Sixth-Neighbours.</small></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<% if (!htmlWebpackPlugin.options.prod) { %>
+<script src="/webpack-dev-server.js"></script>
+<% } %>
+</body>
+</html>

@@ -60,3 +60,5 @@ typings/
 Sotalbireo.github.io/
 .DS_Store
 src/**/*.d.ts
+package-lock.json
+yarn.lock

@@ -1,0 +1,5 @@
+node_modules/
+dist/
+Sotalbireo.github.io/
+src/**/*.d.ts
+src/**/*.d.tsx

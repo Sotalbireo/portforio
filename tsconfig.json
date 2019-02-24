@@ -1,12 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "es5",
+    "module": "es2015",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "sourceMap": true,
+    "outDir": "./dist",
+    "importHelpers": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": true
-  }
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": false
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
