@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>sample</title>
 	<style>
 		:root {
@@ -22,19 +22,20 @@
 			display: grid;
 			position: relative;
 			width: 100vw;
-			grid-template-rows: 25vh 25vh 25vh 25vh;
-			grid-template-columns: 25vw 25vw 25vw 25vw;
-
+			grid-template-rows: repeat(4, 25vh);
+			grid-template-columns: repeat(4, 25vw);
+            justify-content: space-between;
 		}
 		section.abs > article {
 			/* width: 80vw; */
 			/* margin: 0 auto; */
-			grid-row: 1 / 2;
-			grid-column: 3 / 4;
+			grid-row: 1 / 3;
+			grid-column: 2 / 5;
+            justify-self: end;
 		}
 		div.bg {
 			position: absolute;
-			--x: 40vw;
+			--x: 45vw;
 			--y: calc(100vh + (2 * var(--x) * var(--sin20)));
 
 			top: 0;
@@ -48,7 +49,7 @@
 		}
 		.bg section {
 			transform: rotate(-20deg);
-			transform-origin: 40% top;
+			transform-origin: 45% top;
 		}
 		#source {
 			color: var(--colorPrima)
@@ -62,13 +63,14 @@
 		h1 {
 			font-size: 10vh;
 			line-height: 1.2;
-			text-align:right;
+			text-align: right;
+            margin-right: 10vw;
 		}
 	</style>
 </head>
 <body>
 	<section id="source" class="abs">
-		<article>
+		<article style="text-align: right;">
 			<h1><nobr>@sota_n<br><small style="font-size:.7em">aka. Sotalbireo</small></nobr></h1>
 		</article>
 	</section>
