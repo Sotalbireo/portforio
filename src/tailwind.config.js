@@ -9,6 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
+          'Noto Sans',
+          'Noto Sans CJK JP',
           'Noto Sans JP',
           'system-ui',
           '-apple-system',

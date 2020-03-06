@@ -1,5 +1,5 @@
 <template>
-  <div id="SnapWrapper">
+  <div>
     <nuxt />
   </div>
 </template>

@@ -1,45 +1,38 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <Heading level="1">
-        sample
+  <div class="wrapper" dir="ltr">
+    <section class="container items-center text-center">
+      <Heading level="1" class="font-serif text-left">
+        @sota<span class="font-sans">_</span>n<br />
+        <small>aka. Sotalbireo</small>
       </Heading>
+    </section>
+    <section class="container">
       <Heading level="2">
-        My first-class Nuxt.js project
+        Profile
       </Heading>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    </section>
   </div>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
+<script lang="ts">
+import Vue from 'vue'
 import Heading from '~/components/Heading.vue'
 
-export default {
+export default Vue.extend({
   components: {
-    Logo,
     Heading
-  }
-}
+  },
+  layout: 'scroll-snap'
+})
 </script>
 
 <style lang="sass">
 .container
-  @apply min-h-screen flex justify-center items-center text-center mx-auto
-
-.links
-  padding-top: 15px
+  @apply h-screen flex flex-none justify-center mx-auto py-4
+  scroll-snap-align: center
+.wrapper
+  @apply flex h-screen items-center justify-between
+  flex-flow: column nowrap
+  scroll-snap-type: y mandatory
+  overflow: auto
 </style>
