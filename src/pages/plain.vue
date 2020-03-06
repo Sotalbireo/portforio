@@ -37,6 +37,7 @@
       <section>
         <Heading level="3"><small>2013 » 2020</small> gafa</Heading>
       </section>
+      <Occupation />
     </section>
   </div>
 </template>
@@ -44,10 +45,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Heading from '~/components/Heading.vue'
+import Occupation from '~/components/Occupation.vue'
 
 export default Vue.extend({
   components: {
-    Heading
+    Heading,
+    Occupation
   }
 })
 </script>
