@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="container">
+    <section class="container min-h-screen">
       <Heading level="1" class="font-serif text-left">
         @sot<span class="spacing-tightest">a<u>_</u>n</span>
         <br />
@@ -19,7 +19,7 @@
         />
       </figure>
       <dl>
-        <dt>Name</dt>
+        <dt>Handle</dt>
         <dd>
           <ul>
             <li>sota_n</li>
@@ -35,7 +35,9 @@
     <section class="container justify-start">
       <Heading level="2">職務経歴</Heading>
       <section>
-        <Heading level="3"><small>2013 » 2020</small> gafa</Heading>
+        <Heading level="3" class="leading-none">
+          Assistant Frontend Engineer
+        </Heading>
       </section>
       <Occupation />
     </section>
@@ -45,12 +47,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import Heading from '~/components/Heading.vue'
-import Occupation from '~/components/Occupation.vue'
 
 export default Vue.extend({
   components: {
-    Heading,
-    Occupation
+    Heading
   }
 })
 </script>
@@ -59,7 +59,7 @@ export default Vue.extend({
 .avator
   @apply border border-purple-600 border-solid overflow-hidden rounded-full
 .container
-  @apply min-h-screen flex flex-none justify-center mx-auto py-4 flex-col
+  @apply flex flex-none justify-center mx-auto py-4 flex-col
   @media(max-width: theme('screens.md'))
     @apply px-6
 .justify-start
@@ -67,7 +67,7 @@ export default Vue.extend({
 .spacing-tightest
   letter-spacing: -.12em
   white-space: nowrap
-  & u
+  u
     @apply font-sans no-underline
 
 dl

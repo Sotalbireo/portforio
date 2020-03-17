@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="yinYangWrapper">
     <div>
       <slot></slot>
     </div>
@@ -13,13 +13,19 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
 export default Vue.extend({
-  data() {
-    return {}
-  },
   mounted() {
-    // this.yinYangBG = this.$el.getElementsByClassName('yinYangBG')[0]
-    // yinYangBG.innerHTML = this.$slots.default
+    const elementOffsets = this.$el.getBoundingClientRect()
+    const { pageYOffset, pageXOffset } = window
+    const elementYOffset = elementOffsets.top + pageYOffset
+    const elementXOffset = elementOffsets.left + pageXOffset
+    // NOTE: 型アサーションがうまくいかないのでこんなことになった
+    const yinYangInner: HTMLElement =
+      this.$el.querySelector('.yinYangBG > div') ||
+      document.createElement('div')
+    yinYangInner.style.top = elementYOffset + 'px'
+    yinYangInner.style.left = elementXOffset + 'px'
   }
 })
 </script>
@@ -33,7 +39,7 @@ $y: calc(100vh + (2 * #{$x} * #{$sin20}))
 $color-prima: #d02d26 !default
 
 .yinYangBG
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   background-color: $color-prima
@@ -44,6 +50,7 @@ $color-prima: #d02d26 !default
   transform-origin: right top
   transform: rotate(20deg)
   > div
+    position: absolute
     transform: rotate(-20deg)
     transform-origin: right top
 </style>

@@ -42,7 +42,9 @@ h2
 h3
   @apply font-light text-4xl text-teal-700 pb-4
   @media(max-width: theme('screens.md'))
-  text-indent: -.21em
+  padding-left: 1.6em
+  text-indent: -1.82em
+  // text-indent: -.21em
   &::before
     @apply header-before
     content: "###"

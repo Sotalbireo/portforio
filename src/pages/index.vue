@@ -1,12 +1,10 @@
 <template>
   <div class="wrapper" dir="ltr">
     <section class="container items-center text-center">
-      <yin-yang>
-        <Heading level="1" class="font-serif text-left">
-          @sota<span class="font-sans">_</span>n<br />
-          <small>aka. Sotalbireo</small>
-        </Heading>
-      </yin-yang>
+      <Heading level="1" class="font-serif text-left">
+        @sota<span class="font-sans">_</span>n<br />
+        <small>aka. Sotalbireo</small>
+      </Heading>
     </section>
     <section class="container">
       <Heading level="2">
@@ -19,12 +17,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import Heading from '~/components/Heading.vue'
-import YinYang from '~/components/YinYang.vue'
 
 export default Vue.extend({
   components: {
-    Heading,
-    YinYang
+    Heading
   },
   layout: 'default'
 })
@@ -38,5 +34,5 @@ export default Vue.extend({
   @apply flex h-screen items-center justify-between
   flex-flow: column nowrap
   scroll-snap-type: y mandatory
-  overflow: auto
+  // overflow: auto
 </style>
