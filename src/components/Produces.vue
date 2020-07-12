@@ -40,7 +40,7 @@ export default {
                 langs: ['HTML5', 'CSS3', 'Electron'],
                 mainLang: 'TypeScript',
                 name: 'WebVTT-Editor',
-                overview: 'The editor to create WebVTT how subtitles at html5 video.',
+                overview: 'An application for set VTT (one of subtitles format) timestamps.',
                 repository: {
                     type: 'github',
                     href: 'https://github.com/Sotalbireo/WebVTT-Editor'
@@ -73,6 +73,21 @@ export default {
                 repository: {
                     type: 'github',
                     href: 'https://github.com/kusoDevBattle/sisiodosi'
+                },
+                thumbnail: ''
+            },
+            {
+                cat: 'application',
+                devices: [
+                    'Console',
+                ],
+                langs: [],
+                mainLang: "TypeScript",
+                name: "pixiv-novel-downloader",
+                overview: "Download Pixiv novels as format like Aozora-bunko",
+                repository: {
+                    type: 'github',
+                    href: 'https://github.com/Sotalbireo/pixiv-novel-downloader'
                 },
                 thumbnail: ''
             }

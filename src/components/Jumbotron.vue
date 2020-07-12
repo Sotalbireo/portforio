@@ -24,7 +24,7 @@
                         <dd>
                             <ul class="u-ma-0">
                                 <li><a href='https://siky.hateblo.jp/' target='_blank'>Blog</a></li>
-                                <li><a href='https://github.com/sotalbireo/' target='_blank'>Github <iconGithub width="1em" height="1em" style="vertical-align:baseline" /></a></li>
+                                <li><a href='https://github.com/sotalbireo/' target='_blank'>Github <iconGithub width="1em" height="1em" styles="vertical-align:baseline" /></a></li>
                                 <li><a href='https://social.mikutter.hachune.net/@sota_n' target='_blank'>Mastodon</a></li>
                             </ul>
                         </dd>
@@ -44,14 +44,14 @@ const m = (m, d) => moment().set({"M":m,"D":d}).format("Y-MM-DD")
 const b = t => moment().isBetween(...t)
 const s = t => moment().isSame(t,"day")
 const season = {
-    winter: [m(11,18), m(12,31)],
-    winter2: [m(1,1), m(3,23)],
-    spring: [m(3,24), m(6,25)],
-    summer: [m(6,26), m(9,7)],
-    autumn: [m(9,8), m(11,17)],
-    birthday: m(2,3),
-    valentine: m(2,14),
-    debut: m(12,19)
+    winter: [m(10,18), m(11,31)],
+    winter2: [m(0,1), m(2,23)],
+    spring: [m(2,24), m(5,25)],
+    summer: [m(5,26), m(8,7)],
+    autumn: [m(8,8), m(10,17)],
+    birthday: m(1,3),
+    valentine: m(1,14),
+    debut: m(11,19)
 }
 
 export default {

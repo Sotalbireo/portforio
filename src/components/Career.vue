@@ -23,20 +23,14 @@ export default {
     data: () => ({
         xx: [
             {
-                date: "April 2012",
-                article: "Matriculate at Tokyo University of Science"
-            },
-            {
                 date: "June 2013",
                 article: "Started part-time job as an Assistant front-end engineer"
+            },
+            {
+                date: "March 2020",
+                article: "Graduated from Tokyo University of Science"
             }
         ]
     })
 }
 </script>
-
-
-
-<style lang="sass" scoped>
-
-</style>
