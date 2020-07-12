@@ -1,5 +1,5 @@
 {
-  "name": "Sotalbireo.github.io",
+  "name": "portforio",
   "author": "Kyohei SASAKI",
   "homepage": "https://siky.jp/",
   "private": true,
@@ -7,7 +7,7 @@
   "main": "dist/index.html",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sotalbireo/github.userpage.src.git"
+    "url": "git+https://github.com/Sotalbireo/portforio.git"
   },
   "scripts": {
     "clean": "del-cli 'Sotalbireo.github.io/**/*' '!Sotalbireo.github.io/CNAME'",
